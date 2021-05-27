@@ -17,24 +17,21 @@ class SusiApp extends StatelessWidget {
   } //fin widget
 } //fin clase SusiApp
 
-class PageOne extends StatelessWidget {
-  String _params = "hola desde p1";
+class Pag1 extends StatelessWidget {
+  String _params = "holaaa desde p1";
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  PageOne({
+  Pag1({
     Key key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key al a scaffold para acceder al scaffold desde otro widget hijo
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         title: Text('inicio sus'),
         backgroundColor: Colors.brown[400],
-      ),
+      ),// fin del appbar
       body: Center(
         child: Container(
           child: MaterialButton(
@@ -43,24 +40,22 @@ class PageOne extends StatelessWidget {
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.black,
-              ),
-            ),
+              ),// fin del textstyle
+            ),// fin del text
             color: Colors.white,
             onPressed: () {
-              _openSecondPage(context);
-            },
-          ),
-        ),
-      ),
-    );
-  } //fin de widget
-
-  void _openSecondPage(BuildContext context) async {
-    String _datoRetornadoDeSecondPage;
-    // await para esperar que se regrese dato desde la pantalla que se abre
+              _openPag2(context);
+            },// fin onpressed
+          ),// gin material button
+        ),//// fin container
+      ),// fin body
+    );// fin scaffold
+  } //fin de widget pag 1
+  void _openPag2(BuildContext context) async {
+    String _datoRetornadoDePag2;
     await Navigator.of(context)
         .pushNamed(
-      "/secondPage",
+      "/segundaPag",
       arguments: _params,
     )
         .then(
@@ -68,8 +63,6 @@ class PageOne extends StatelessWidget {
         _datoRetornadoDeSecondPage = response;
       },
     );
-
-    // acceso al scaffold para mostrar snackbar
     _scaffoldKey.currentState.showSnackBar(
       SnackBar(
         content: Text(
@@ -77,5 +70,5 @@ class PageOne extends StatelessWidget {
         ),
       ),
     );
-  } //fin para abrir la segunda pagina
-} //clasepageone
+  } //fin pag2
+} //clase pag1
